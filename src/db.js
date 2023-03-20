@@ -32,16 +32,6 @@ let sequelize =
         logging: false, // set to console.log to see the raw SQL queries
         native: false, // lets Sequelize know we can use pg-native for ~30% more speed
       });
-
-async function connectToDatabase() {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-}
-
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -76,7 +66,6 @@ Recipe.belongsToMany(TypeOfDiet, { through: "recipe-typeOfDiet" });
 TypeOfDiet.belongsToMany(Recipe, { through: "recipe-typeOfDiet" });
 
 module.exports = {
-  connectToDatabase,
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
