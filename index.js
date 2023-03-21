@@ -5,7 +5,7 @@ const DB_PORT = process.env.DB_PORT || 3000;
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(async () => {
-  await loadRecipesInTheDb();
+  //await loadRecipesInTheDb();
   server.listen(DB_PORT, () => {
     console.log("%s listening at " + DB_PORT); // eslint-disable-line no-console
   });
